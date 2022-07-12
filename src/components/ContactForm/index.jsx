@@ -16,6 +16,18 @@ class ContactForm extends Component {
       number,
       id: String(nanoid(5)),
     };
+
+    if (
+      this.state.contacts.find(
+        contact =>
+          contact.name.toLocaleLowerCase() ===
+          newContact.name.toLocaleLowerCase()
+      )
+    ) {
+      alert(newContact.name + ' is alredy in contacts');
+      return true;
+    }
+
     this.props.onSubmit(newContact);
     this.reset();
   };

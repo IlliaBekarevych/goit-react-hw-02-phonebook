@@ -17,17 +17,6 @@ class App extends Component {
     this.setState(prevState => ({
       contacts: [...prevState.contacts, newContact],
     }));
-
-    if (
-      this.state.contacts.find(
-        contact =>
-          contact.name.toLocaleLowerCase() ===
-          newContact.name.toLocaleLowerCase()
-      )
-    ) {
-      alert(newContact.name + ' is alredy in contacts');
-      return true;
-    }
   };
 
   onChangeFilter = e => {
