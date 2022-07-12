@@ -3,10 +3,6 @@ import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import i from './index.module.css';
 
-const INITIALE_STATE = {
-  name: '',
-  number: '',
-};
 class ContactForm extends Component {
   state = { name: '', number: '' };
   onChange = e => {
@@ -20,14 +16,11 @@ class ContactForm extends Component {
       number,
       id: String(nanoid(5)),
     };
-    if (this.props.checkNewContact(newContact)) {
-      return;
-    }
     this.props.onSubmit(newContact);
     this.reset();
   };
   reset = () => {
-    this.setState({ ...INITIALE_STATE });
+    this.setState({ name: '', number: '' });
   };
   render() {
     const { number, name } = this.state;
@@ -59,7 +52,9 @@ class ContactForm extends Component {
             required
           />
         </label>
-        <button type="submit" className={i.formBtn}>Add contact</button>
+        <button type="submit" className={i.formBtn}>
+          Add contact
+        </button>
       </form>
     );
   }
@@ -67,7 +62,6 @@ class ContactForm extends Component {
 
 ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  checkNewContact: PropTypes.func.isRequired,
 };
 
 export default ContactForm;
